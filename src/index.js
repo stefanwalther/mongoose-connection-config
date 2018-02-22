@@ -1,10 +1,71 @@
 const extend = require('extend');
 const DEFAULT_CONFIG = require('./default-config');
 
+/**
+ * @class MongooseConnectionConfig
+ * @name MongooseConnectionConfig
+ *
+ * @api public
+ */
 class MongooseConnectionConfig {
 
   /**
-   * Initialize a new mongoose-config.
+   * Define a configuration object to pass to the constructor.
+   *
+   * If no options are defined, the default options will be used:
+   *
+   *
+   * ```js
+   * // Default Options:
+   * const defaultOpts = {
+   *    debug: false,
+   *    host: 'localhost',
+   *    port: 27017,
+   *    database: '',
+   *    connectOptions: {
+   *      db: {},
+   *      server: {
+   *        auto_reconnect: true
+   *      },
+   *      replset: {},
+   *      user: {},
+   *      pass: {},
+   *      auth: {},
+   *      mongos: {}
+   *    }
+   * };
+   * ```
+   * See [index.js => DEFAULT_CONFIGURATION](index.js) for more information about the current default options.
+   *
+   *
+   * @name Configuration
+   *
+   * @param {Object} `opts` - Options to pass in.
+   * @param {Boolean} `opts.debug` - Whether MongoDB runs in debug mode or not.
+   * @param {String} `opts.host` - The MongoDBhost, defaults to `localhost`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.
+   * @param {Number} `opts.port` - The MongoDB port, defaults to `27017`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.
+   * @param {String} `opts.database` - The MongoDB database, defaults to `admin`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.
+   * @param {Object} `opts.connectOptions` - The MongoDB connection properties, being passed through to the native MongoDB driver. See [mongoose' documentation](http://mongoosejs.com/docs/connections.html), resp. [MongoDB's native driver for node.js' documentation](https://github.com/mongodb/node-mongodb-native) for more details.
+   *
+   * @api public
+   */
+
+  /**
+   * Initialize a new MongooseConnectionConfig.
+   *
+   * Basic Example:
+   * ```
+   * const MongooseConnectionConfig = require('./src');
+   *
+   * const opts = {
+   *   host: process.env.MONGO_HOST || 'localhost',
+   *   port: process.env.MONGO_PORT || 27017,
+   *   database: 'my-db'
+   * };
+   * const mcc = new MongooseConnectionConfig(opts);
+   *
+   * console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db   *
+   * ```
    *
    * @name .constructor()
    * @constructor
@@ -18,7 +79,7 @@ class MongooseConnectionConfig {
   /**
    * Default configuration options.
    *
-   * @returns {{debug: boolean, host: string, port: number, database: string, connectOptions: {db: {}, server: {auto_reconnect: boolean, socketOptions: {keepAlive: number, connectTimeoutMS: number}}, replset: {socketOptions: {keepAlive: number, connectTimeoutMS: number}}, user: {}, pass: {}, auth: {}, mongos: {}}}}
+   * @returns {Object}
    *
    * @api public
    */
@@ -26,7 +87,11 @@ class MongooseConnectionConfig {
     return DEFAULT_CONFIG;
   }
 
-
+  /**
+   * Get the connection string.
+   * @returns {string}
+   * @api public
+   */
   getMongoUri() {
     let c = 'mongodb://';
     c += this._getMongoUri_UserPwd();
@@ -43,12 +108,10 @@ class MongooseConnectionConfig {
   _getMongoUri_Hosts() {
     // Todo: Allow multiple hosts according to https://docs.mongodb.com/manual/reference/connection-string/
     return this.config.host + ':' + this.config.port;
-
   }
 
   _getMongoUri_Database() {
     return (this.config.database) ? `/${this.config.database}` : '';
-
   }
 
 }

@@ -2,9 +2,7 @@ const MongooseConnectionConfig = require('./../../src');
 const defaultConfig = require('./../../src/default-config');
 
 describe('mongoose-connection-config', () => {
-
   describe('has an API which', () => {
-
     it('exposes has a ctor', () => {
       expect(MongooseConnectionConfig)
         .to.have.a.property('prototype')
@@ -28,12 +26,11 @@ describe('mongoose-connection-config', () => {
       mcc.DEFAULT_CONFIG.host = 'newhost';
 
       expect(mcc.DEFAULT_CONFIG).to.have.a.property('host').to.be.equal(defaultConfig.host);
-    })
+    });
   });
 
   describe('ctor', () => {
-
-   it('allows to pass in config params which overwrite the default ones', () => {
+    it('allows to pass in config params which overwrite the default ones', () => {
       let mcc = new MongooseConnectionConfig({host: 'sub.mydomain'});
       expect(mcc.config).to.have.a.property('host').to.be.equal('sub.mydomain');
     });
@@ -42,10 +39,9 @@ describe('mongoose-connection-config', () => {
       let mcc = new MongooseConnectionConfig({host: 'sub.mydomain'});
       expect(mcc.config).to.have.a.property('port').to.be.equal(27017);
     });
-  })
+  });
 
   describe('When building a connection', () => {
-
     it('_getMongoUri_UserPwd => returns and empty string by default', () => {
       const mcc = new MongooseConnectionConfig();
       expect(mcc._getMongoUri_UserPwd()).to.be.equal('');
@@ -78,7 +74,5 @@ describe('mongoose-connection-config', () => {
       mcc.config.database = 'foobarbaz';
       expect(mcc._getMongoUri_Database()).to.be.equal('/foobarbaz');
     });
-
-  })
-
+  });
 });

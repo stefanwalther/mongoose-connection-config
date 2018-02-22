@@ -6,25 +6,96 @@
 
 ## Installation
 
-... install instructions here ...
+```
+$ npm install mongoose-connection-config --save
+```
 
 ## Usage
 
-... usage instructions here ...
+const MongooseConnectionConfig = require('mongoose-connnetion-config');
+
+const opts = {
+  host: process.env.MONGO_HOST || 'localhost',
+  port: process.env.MONGO_PORT || 27017,
+  database: 'my-db'
+};
+const mcc = new MongooseConnectionConfig(opts);
+
+console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db
 
 ## API
 
-### [.constructor()](src/index.js#L15)
+### [MongooseConnectionConfig](src/index.js#L11)
 
-Initialize a new mongoose-config.
+### [Configuration](src/index.js#L53)
+Define a configuration object to pass to the constructor.
+
+If no options are defined, the default options will be used:
+See [index.js => DEFAULT_CONFIGURATION](index.js) for more information about the current default options.
+
+**Params**
+
+* `opts` **{Object}**: Options to pass in.    
+* `opts.debug` **{Boolean}**: Whether MongoDB runs in debug mode or not.    
+* `opts.host` **{String}**: The MongoDBhost, defaults to `localhost`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.    
+* `opts.port` **{Number}**: The MongoDB port, defaults to `27017`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.    
+* `opts.database` **{String}**: The MongoDB database, defaults to `admin`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.    
+* `opts.connectOptions` **{Object}**: The MongoDB connection properties, being passed through to the native MongoDB driver. See [mongoose' documentation](http://mongoosejs.com/docs/connections.html), resp. [MongoDB's native driver for node.js' documentation](https://github.com/mongodb/node-mongodb-native) for more details.    
+
+**Example**
+
+```js
+// Default Options:
+const defaultOpts = {
+   debug: false,
+   host: 'localhost',
+   port: 27017,
+   database: '',
+   connectOptions: {
+     db: {},
+     server: {
+       auto_reconnect: true
+     },
+     replset: {},
+     user: {},
+     pass: {},
+     auth: {},
+     mongos: {}
+   }
+};
+```
+
+### [.constructor()](src/index.js#L76)
+Initialize a new MongooseConnectionConfig.
+
+Basic Example:
 
 **Params**
 
 * **{Configuration}**: config - Configuration options overriding the default ones.    
 
+**Example**
+
+```
+const MongooseConnectionConfig = require('./src');
+
+const opts = {
+  host: process.env.MONGO_HOST || 'localhost',
+  port: process.env.MONGO_PORT || 27017,
+  database: 'my-db'
+};
+const mcc = new MongooseConnectionConfig(opts);
+
+console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db   *
+```
+
 Default configuration options.
 
-* `returns` **{{debug: boolean, host: string, port: number, database: string, connectOptions: {db: {}, server: {auto_reconnect: boolean, socketOptions: {keepAlive: number, connectTimeoutMS: number}}, replset: {socketOptions: {keepAlive: number, connectTimeoutMS: number}}, user: {}, pass: {}, auth: {}, mongos: {}}}}**  
+* `returns` **{Object}**  
+
+Get the connection string.
+
+* `returns` **{string}**  
 
 ## Author
 **Stefan Walther**
