@@ -95,6 +95,8 @@ const mcc = new MongooseConnectionConfig(opts);
 console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db   *
 ```
 
+Example:
+
 * `returns` **{Object}**  
 
 **Example**

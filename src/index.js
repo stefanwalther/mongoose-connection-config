@@ -79,6 +79,8 @@ class MongooseConnectionConfig {
   /**
    * Default configuration options.
    *
+   * Example:
+   *
    * ```js
    * const MongooseConnectionConfig = require('./../src');
    *
