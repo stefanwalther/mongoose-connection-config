@@ -53,7 +53,8 @@ class MongooseConnectionConfig {
    * Initialize a new MongooseConnectionConfig.
    *
    * Basic Example:
-   * ```
+   *
+   * ```js
    * const MongooseConnectionConfig = require('./src');
    *
    * const opts = {

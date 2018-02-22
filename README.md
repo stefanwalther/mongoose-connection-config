@@ -71,7 +71,7 @@ const defaultOpts = {
 };
 ```
 
-### [.constructor()](src/index.js#L75)
+### [.constructor()](src/index.js#L76)
 Initialize a new MongooseConnectionConfig.
 
 Basic Example:
@@ -82,7 +82,7 @@ Basic Example:
 
 **Example**
 
-```
+```js
 const MongooseConnectionConfig = require('./src');
 
 const opts = {
