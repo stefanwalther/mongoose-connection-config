@@ -1,6 +1,6 @@
-# mongoose-config
+# mongoose-connection-config
 
-> Helper library to set mongoose configurations.
+> Helper library to set mongoose connection configuration.
 
 ---
 
