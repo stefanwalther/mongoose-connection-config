@@ -78,6 +78,13 @@ class MongooseConnectionConfig {
   /**
    * Default configuration options.
    *
+   * ```js
+   * const MongooseConnectionConfig = require('./../src');
+   *
+   * let mongooseConnectionConfig = new MongooseConnectionConfig();
+   * console.log(mongooseConnectionConfig.DEFAULT_CONFIG);
+   * ```
+   *
    * @returns {Object}
    *
    * @api public

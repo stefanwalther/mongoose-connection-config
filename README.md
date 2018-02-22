@@ -31,9 +31,9 @@ console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db
 
 ## API
 
-### [MongooseConnectionConfig](src/index.js#L11)
+### [MongooseConnectionConfig](src/index.js#L10)
 
-### [Configuration](src/index.js#L53)
+### [Configuration](src/index.js#L52)
 Define a configuration object to pass to the constructor.
 
 If no options are defined, the default options will be used:
@@ -71,7 +71,7 @@ const defaultOpts = {
 };
 ```
 
-### [.constructor()](src/index.js#L76)
+### [.constructor()](src/index.js#L75)
 Initialize a new MongooseConnectionConfig.
 
 Basic Example:
@@ -95,9 +95,16 @@ const mcc = new MongooseConnectionConfig(opts);
 console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db   *
 ```
 
-Default configuration options.
-
 * `returns` **{Object}**  
+
+**Example**
+
+```js
+const MongooseConnectionConfig = require('./../src');
+
+let mongooseConnectionConfig = new MongooseConnectionConfig();
+console.log(mongooseConnectionConfig.DEFAULT_CONFIG);
+```
 
 Get the connection string.
 
