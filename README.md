@@ -1,5 +1,7 @@
 # mongoose-connection-config
 
+[![CircleCI](https://img.shields.io/circleci/project/github/stefanwalther/mongoose-connection-config.svg)](https://circleci.com/projects/gh/stefanwalther/mongoose-connection-config)
+
 > Helper library to set mongoose connection configuration.
 
 ---
