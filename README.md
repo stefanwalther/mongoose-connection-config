@@ -12,6 +12,7 @@ $ npm install mongoose-connection-config --save
 
 ## Usage
 
+```js
 const MongooseConnectionConfig = require('mongoose-connnetion-config');
 
 const opts = {
@@ -22,6 +23,7 @@ const opts = {
 const mcc = new MongooseConnectionConfig(opts);
 
 console.log(mcc.getMongoUri()); // => mongodb://localhost:27017/my-db
+```
 
 ## API
 
