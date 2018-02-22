@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/mongoose-connection-config.svg)]()
 [![CircleCI](https://img.shields.io/circleci/project/github/stefanwalther/mongoose-connection-config.svg)](https://circleci.com/projects/gh/stefanwalther/mongoose-connection-config)
+[![Codecov](https://img.shields.io/codecov/c/github/stefanwalther/mongoose-connection-config.svg)](https://codecov.io/gh/stefanwalther/mongoose-connection-config)
 
 > Helper library to set mongoose connection configuration.
 
