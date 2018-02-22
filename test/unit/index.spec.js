@@ -23,8 +23,11 @@ describe('mongoose-connection-config', () => {
 
     it('DEFAULT_CONFIG is readOnly', () => {
       let mcc = new MongooseConnectionConfig();
-      mcc.DEFAULT_CONFIG.host = 'newhost';
-
+      try {
+        mcc.DEFAULT_CONFIG = {};
+      } catch (ex) {
+        expect(ex).to.exist;
+      }
       expect(mcc.DEFAULT_CONFIG).to.have.a.property('host').to.be.equal(defaultConfig.host);
     });
   });
@@ -42,13 +45,18 @@ describe('mongoose-connection-config', () => {
   });
 
   describe('When building a connection', () => {
+    it('getMongoUri => returns the default connection string', () => {
+      let mcc = new MongooseConnectionConfig({database: 'my-db'});
+      expect(mcc.getMongoUri()).to.be.equal('mongodb://localhost:27017/my-db');
+    });
+
     it('_getMongoUri_UserPwd => returns and empty string by default', () => {
-      const mcc = new MongooseConnectionConfig();
+      let mcc = new MongooseConnectionConfig();
       expect(mcc._getMongoUri_UserPwd()).to.be.equal('');
     });
 
     it('_getMongoUri_UserPwd => returns and empty string if only either username or password is set', () => {
-      const mcc = new MongooseConnectionConfig();
+      let mcc = new MongooseConnectionConfig();
       mcc.config.username = 'foo';
       expect(mcc._getMongoUri_UserPwd()).to.be.equal('');
       mcc.config.username = '';
@@ -57,20 +65,20 @@ describe('mongoose-connection-config', () => {
     });
 
     it('_getMongoUri_UserPwd => returns the user-pwd', () => {
-      const mcc = new MongooseConnectionConfig();
+      let mcc = new MongooseConnectionConfig();
       mcc.config.username = 'foo';
       mcc.config.password = 'bar';
       expect(mcc._getMongoUri_UserPwd()).to.be.equal('foo:bar@');
     });
 
     it('_getMongoUri_Database => returns an empty string by default', () => {
-      const mcc = new MongooseConnectionConfig();
+      let mcc = new MongooseConnectionConfig();
       mcc.config.database = '';
       expect(mcc._getMongoUri_Database()).to.be.equal('');
     });
 
     it('_getMongoUri_Database => returns the database as defined', () => {
-      const mcc = new MongooseConnectionConfig();
+      let mcc = new MongooseConnectionConfig();
       mcc.config.database = 'foobarbaz';
       expect(mcc._getMongoUri_Database()).to.be.equal('/foobarbaz');
     });

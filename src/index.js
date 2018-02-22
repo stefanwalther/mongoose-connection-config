@@ -1,4 +1,3 @@
-const extend = require('extend');
 const DEFAULT_CONFIG = require('./default-config');
 
 /**
@@ -73,7 +72,7 @@ class MongooseConnectionConfig {
    * @api public
    */
   constructor(config) {
-    this.config = extend(this.DEFAULT_CONFIG, config);
+    this.config = Object.assign(Object.assign({}, this.DEFAULT_CONFIG), config);
   }
 
   /**
@@ -85,6 +84,10 @@ class MongooseConnectionConfig {
    */
   get DEFAULT_CONFIG() {
     return DEFAULT_CONFIG;
+  }
+
+  set DEFAULT_CONFIG(value) {
+    throw new Error(`The readOnly property cannot be written. ${value} was passed.`);
   }
 
   /**
