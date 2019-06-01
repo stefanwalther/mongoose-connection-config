@@ -1,6 +1,6 @@
 {
   "name": "mongoose-connection-config",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Helper library to set mongoose connection configuration.",
   "keywords": [
     "config",

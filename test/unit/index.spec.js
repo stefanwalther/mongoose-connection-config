@@ -82,5 +82,12 @@ describe('mongoose-connection-config', () => {
       mcc.config.database = 'foobarbaz';
       expect(mcc._getMongoUri_Database()).to.be.equal('/foobarbaz');
     });
+
+    it('setting property `connection_string` forces to skip connection string building', () => {
+      let mcc = new MongooseConnectionConfig();
+      mcc.config.connection_string = 'mongodb+srv://dbUser:dbPassword@cluster-fra.mongodb.net/test?retryWrites=true&w=majority';
+      mcc.config.database = 'foobarbaz';
+      expect(mcc.getMongoUri()).to.be.equal(mcc.config.connection_string);
+    });
   });
 });

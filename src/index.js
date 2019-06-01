@@ -40,6 +40,7 @@ class MongooseConnectionConfig {
    * @name Configuration
    *
    * @param {Object} `opts` - Options to pass in.
+   * @param {String} `opts.connection_string - Full connection string which will then be returned, ignoring all other options.
    * @param {Boolean} `opts.debug` - Whether MongoDB runs in debug mode or not.
    * @param {String} `opts.host` - The MongoDBhost, defaults to `localhost`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.
    * @param {Number} `opts.port` - The MongoDB port, defaults to `27017`.  See the mongodb [connection string spec](https://docs.mongodb.com/manual/reference/connection-string/) for more details.
@@ -106,6 +107,11 @@ class MongooseConnectionConfig {
    * @api public
    */
   getMongoUri() {
+
+    if (this.config.connection_string) {
+      return this.config.connection_string;
+    }
+
     let c = 'mongodb://';
     c += this._getMongoUri_UserPwd();
     c += this._getMongoUri_Hosts();
