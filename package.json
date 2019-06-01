@@ -1,6 +1,6 @@
 {
   "name": "mongoose-connection-config",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Helper library to set mongoose connection configuration.",
   "keywords": [
     "config",
@@ -10,19 +10,21 @@
   "bugs": {
     "url": "https://github.com/stefanwalther/mongoose-connection-config/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanwalther/mongoose-connection-config.git"
+  },
   "license": "MIT",
   "author": "Stefan Walther <swr.nixda@gmail.com> (http://qliksite.io)",
   "main": "./src/index.js",
   "directories": {
     "doc": "docs",
-    "test": "test",
-    "src": "src"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stefanwalther/mongoose-connection-config.git"
+    "src": "src",
+    "test": "test"
   },
   "scripts": {
+    "precommit": "npm run lint",
+    "coverage": "nyc report",
     "lint": "npm run lint:src && yarn run lint:test",
     "lint:fix": "npm run lint:src:fix && npm run lint:test:fix",
     "lint:src": "eslint src",
@@ -30,8 +32,7 @@
     "lint:test": "eslint test",
     "lint:test:fix": "eslint test --fix",
     "test": "npm run test:unit ",
-    "test:unit": "nyc --reporter=lcov mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js' && npm run coverage",
-    "coverage": "nyc report"
+    "test:unit": "nyc --reporter=lcov mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js' && npm run coverage"
   },
   "dependencies": {},
   "devDependencies": {
@@ -40,6 +41,8 @@
     "codecov": "3.5.0",
     "eslint": "5.16.0",
     "eslint-config-space-single": "0.3.11",
+    "eslint-plugin-mocha": "^5.3.0",
+    "husky": "^2.3.0",
     "mocha": "6.1.4",
     "nyc": "14.1.1"
   },
