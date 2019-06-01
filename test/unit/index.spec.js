@@ -85,6 +85,7 @@ describe('mongoose-connection-config', () => {
 
     it('setting property `connection_string` forces to skip connection string building', () => {
       let mcc = new MongooseConnectionConfig();
+      // eslint-disable-next-line camelcase
       mcc.config.connection_string = 'mongodb+srv://dbUser:dbPassword@cluster-fra.mongodb.net/test?retryWrites=true&w=majority';
       mcc.config.database = 'foobarbaz';
       expect(mcc.getMongoUri()).to.be.equal(mcc.config.connection_string);
