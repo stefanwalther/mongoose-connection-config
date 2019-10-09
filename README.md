@@ -19,7 +19,7 @@ $ npm install mongoose-connection-config --save
 ### Build the connection string
 
 ```js
-const MongooseConnectionConfig = require('mongoose-connnection-config');
+const MongooseConnectionConfig = require('mongoose-connection-config');
 
 const opts = {
   host: process.env.MONGO_HOST || 'localhost',
@@ -37,7 +37,7 @@ If you want to ignore all options being passed in, then set the option `connecti
 
 ```js
 
-const MongooseConnectionConfig = require('mongoose-connnection-config');
+const MongooseConnectionConfig = require('mongoose-connection-config');
 
 const opts = {
   connection_string: 'mongodb+srv://dbUser:dbPassword@cluster-fra.mongodb.net/test?retryWrites=true&w=majority',
