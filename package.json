@@ -39,7 +39,7 @@
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "codecov": "3.6.1",
-    "eslint": "6.5.1",
+    "eslint": "8.57.0",
     "eslint-config-space-single": "0.3.11",
     "eslint-plugin-mocha": "6.1.1",
     "husky": "3.1.0",
